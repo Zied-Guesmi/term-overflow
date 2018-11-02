@@ -1,7 +1,9 @@
+import sys
 import requests
+import re
+
 from pyquery import PyQuery as pq
 from bs4 import BeautifulSoup
-import re
 
 
 def search_question(question):
@@ -14,22 +16,17 @@ def search_question(question):
 
 def get_answer(url):
     response = requests.get(url)
-    print(type(response.text))
     soup = BeautifulSoup(response.text, 'html.parser')
     accepted_answer = soup.find('div', {'class' : 'accepted-answer'})
-    print(type(accepted_answer))
+
     if accepted_answer is not None:
         return accepted_answer.find('div', {'class' : 'post-text'})
 
     return soup.find('div', {'class' : 'post-text'})
-    # soup = BeautifulSoup(accepted_answer, 'html.parser')
 
-
-def main():
-    question = "length of list python"
+def main(question):
     question_url = search_question(question)
     answer = get_answer(question_url)
     print(answer)
 
-
-main()
+main(" ".join(sys.argv[1:]))
