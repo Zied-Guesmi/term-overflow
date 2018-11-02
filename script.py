@@ -21,7 +21,7 @@ def get_answer(url):
     if accepted_answer is not None:
         return accepted_answer.find('div', {'class' : 'post-text'})
 
-    return soup.find_all('div', {'class' : 'post-text'})[0]
+    return soup.find('div', {'class' : 'post-text'})
     # soup = BeautifulSoup(accepted_answer, 'html.parser')
 
 
