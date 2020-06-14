@@ -1,4 +1,4 @@
-# term-overflow
+# termoverflow
 
 This tools allows to search questions in stackoverflow from the terminal.
 
